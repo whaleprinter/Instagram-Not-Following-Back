@@ -39,7 +39,8 @@ public class FollowersComparer {
         File follower = new File("followers_1.html");
         File following = new File("following.html");
         File output = new File("opps.txt");
-        
+        File output2 = new File("youOppin.txt");
+
         TreeSet<String> followersSet = htmlToTreeSet(follower);
         TreeSet<String> followingSet = htmlToTreeSet(following);
         
@@ -54,5 +55,13 @@ public class FollowersComparer {
             }
         }
         myWriter.close();
+
+        FileWriter myWriter2 = new FileWriter(output2);
+        for (String personFollowed : followersSet) {
+            if (!followingSet.contains(personFollowed)) {
+                myWriter2.write(personFollowed + "\n");
+            }
+        }
+        myWriter2.close();
     }
 }
